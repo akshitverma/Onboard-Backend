@@ -31,10 +31,10 @@ app.use(morgan('dev'));
 app.get('/setup', function(req, res) {
 
 	// create a sample user
-	var nick = new User({ 
-		name: 'Nick Cerminara', 
+	var nick = new User({
+		name: 'Nick Cerminara',
 		password: 'password',
-		admin: true 
+		admin: true
 	});
 	nick.save(function(err) {
 		if (err) throw err;
@@ -44,6 +44,8 @@ app.get('/setup', function(req, res) {
 	});
 });
 
+
+
 // basic route (http://localhost:8080)
 app.get('/', function(req, res) {
 	res.send('Hello! The API is at http://localhost:' + port + '/api');
@@ -52,12 +54,31 @@ app.get('/', function(req, res) {
 // ---------------------------------------------------------
 // get an instance of the router for api routes
 // ---------------------------------------------------------
-var apiRoutes = express.Router(); 
+var apiRoutes = express.Router();
 
 // ---------------------------------------------------------
 // authentication (no middleware necessary since this isnt authenticated)
 // ---------------------------------------------------------
 // http://localhost:8080/api/authenticate
+
+//Signup API
+app.post('/sign_up', function(req, res) {
+
+	// create a sample user
+	var nick = new User({
+		name: req.body.name,
+		password: req.body.password,
+		is_teacher: req.body.is_teacher
+	});
+	nick.save(function(err) {
+		if (err) throw err;
+
+		console.log('User saved successfully');
+		res.json({ success: true, message: 'Successfully Registered.' });
+	});
+});
+
+
 apiRoutes.post('/authenticate', function(req, res) {
 
 	// find the user
@@ -79,7 +100,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 				// if user is found and password is right
 				// create a token
 				var payload = {
-					admin: user.admin	
+					admin: user.admin
 				}
 				var token = jwt.sign(payload, app.get('superSecret'), {
 					expiresIn: 86400 // expires in 24 hours
@@ -90,7 +111,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 					message: 'Enjoy your token!',
 					token: token
 				});
-			}		
+			}
 
 		}
 
@@ -109,12 +130,12 @@ apiRoutes.use(function(req, res, next) {
 	if (token) {
 
 		// verifies secret and checks exp
-		jwt.verify(token, app.get('superSecret'), function(err, decoded) {			
+		jwt.verify(token, app.get('superSecret'), function(err, decoded) {
 			if (err) {
-				return res.json({ success: false, message: 'Failed to authenticate token.' });		
+				return res.json({ success: false, message: 'Failed to authenticate token.' });
 			} else {
 				// if everything is good, save to request for use in other routes
-				req.decoded = decoded;	
+				req.decoded = decoded;
 				next();
 			}
 		});
@@ -123,13 +144,13 @@ apiRoutes.use(function(req, res, next) {
 
 		// if there is no token
 		// return an error
-		return res.status(403).send({ 
-			success: false, 
+		return res.status(403).send({
+			success: false,
 			message: 'No token provided.'
 		});
-		
+
 	}
-	
+
 });
 
 // ---------------------------------------------------------
@@ -155,4 +176,4 @@ app.use('/api', apiRoutes);
 // start the server ================================================
 // =================================================================
 app.listen(port);
-console.log('Magic happens at http://localhost:' + port);
+console.log('Server is up at http://localhost:' + port);
