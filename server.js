@@ -65,6 +65,10 @@ var apiRoutes = express.Router();
 app.post('/sign_up', function(req, res) {
 
 	// create a sample user
+if req.body.name == "" || req.body.password == "" || req.body.is_teacher == ""{
+	res.json({ success: false, message: 'Insufficient information was supplied.' });
+}
+	else{
 	var nick = new User({
 		name: req.body.name,
 		password: req.body.password,
@@ -76,6 +80,7 @@ app.post('/sign_up', function(req, res) {
 		console.log('User saved successfully');
 		res.json({ success: true, message: 'Successfully Registered.' });
 	});
+}
 });
 
 
