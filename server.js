@@ -48,7 +48,7 @@ app.get('/setup', function(req, res) {
 
 // basic route (http://localhost:8080)
 app.get('/', function(req, res) {
-	res.send('Hello! The API is at http://localhost:' + port + '/api');
+	res.send('Akshit: Server is up at https://onboard-api.herokuapp.com:' + port);
 });
 
 // ---------------------------------------------------------
