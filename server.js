@@ -77,12 +77,20 @@ app.post('/sign_up', function(req, res) {
 
 	// create a sample user
 
+//password
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+
+//
 	var newuser = new User({
 		first_name: req.body.first_name,
 		middle_name: req.body.middle_name,
 		last_name: req.body.last_name,
-		password: req.body.password,
+		password: text,
 		account_type: req.body.account_type,
 		address: req.body.address,
 		dob: req.body.dob,
@@ -93,7 +101,7 @@ app.post('/sign_up', function(req, res) {
 	});
 
 
-	if (req.body.name == "" || req.body.password == "" || req.body.account_type == ""){
+	if (req.body.name == "" || req.body.dob == "" || req.body.account_type == ""){
 		res.json({ success: false, message: 'Insufficient information was supplied.' });
 	}
 	else{
@@ -107,8 +115,8 @@ app.post('/sign_up', function(req, res) {
 		var mailOptions = {
   		from: 'akshitv01@gmail.com',
   		to: req.body.email,
-  		subject: 'Successfully Registered!',
-  		text: 'Hi!'
+  		subject: 'Successfully Registered! on SMS',
+  		text: 'Hi! We are sharing your credentials via this mail. Username: ' + req.body.email + '  and Password: ' + text + ''
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
