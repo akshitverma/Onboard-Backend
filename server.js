@@ -6,6 +6,7 @@ var app         = express();
 var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
 var mongoose    = require('mongoose');
+var nodemailer = require('nodemailer')
 
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // get our config file
@@ -24,6 +25,16 @@ app.use(bodyParser.json());
 
 // use morgan to log requests to the console
 app.use(morgan('dev'));
+
+//Se nodemailer
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'akshitv01@gmail.com',
+    pass: 'mathu1993gmail!!'
+  }
+});
+
 
 // =================================================================
 // routes ==========================================================
@@ -91,7 +102,24 @@ app.post('/sign_up', function(req, res) {
 
 
 		console.log('User saved successfully');
-		res.json({ success: true, message: 'Successfully Registered.' });
+		res.json({ success: true, message: 'Successfully Registered.'
+
+		//
+		var mailOptions = {
+  		from: 'akshitv01@gmail.com',
+  		to: req.body.email,
+  		subject: 'Successfully Registered!',
+  		text: 'Hi!'
+		};
+
+		transporter.sendMail(mailOptions, function(error, info){
+  	if (error) {
+    	console.log(error);
+  	} else {
+    	console.log('Email sent: ' + info.response);
+  		}
+		});
+		//
 	});
 }
 });
