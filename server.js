@@ -83,8 +83,6 @@ app.post('/sign_up', function(req, res) {
 
   for (var i = 0; i < 5; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-
 //
 	var newuser = new User({
 		first_name: req.body.first_name,
@@ -101,7 +99,7 @@ app.post('/sign_up', function(req, res) {
 	});
 
 
-	if (req.body.name == "" || req.body.dob == "" || req.body.account_type == ""){
+	if (req.body.email == undefined || req.body.dob == "" || req.body.account_type == ""){
 		res.json({ success: false, message: 'Insufficient information was supplied.' });
 	}
 	else{
