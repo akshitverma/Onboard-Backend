@@ -30,8 +30,8 @@ app.use(morgan('dev'));
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'akshitv01@gmail.com',
-    pass: 'mathu1993gmail!!'
+    user: 'sms_admin@fastmail.com',
+    pass: 'sms@123'
   }
 });
 
