@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 //Se nodemailer
-var transporter = nodemailer.createTransport("SMTP",{
+var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'akshitv01@gmail.com',
