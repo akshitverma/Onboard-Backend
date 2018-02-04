@@ -102,8 +102,7 @@ app.post('/sign_up', function(req, res) {
 
 
 		console.log('User saved successfully');
-		res.json({ success: true, message: 'Successfully Registered.'
-
+		res.json({ success: true, message: 'Successfully Registered.'});
 		//
 		var mailOptions = {
   		from: 'akshitv01@gmail.com',
@@ -120,7 +119,6 @@ app.post('/sign_up', function(req, res) {
   		}
 		});
 		//
-	});
 }
 });
 
