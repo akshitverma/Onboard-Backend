@@ -67,16 +67,26 @@ app.post('/sign_up', function(req, res) {
 	// create a sample user
 
 
-	var nick = new User({
-		name: req.body.name,
+	var newuser = new User({
+		first_name: req.body.first_name,
+		middle_name: req.body.middle_name,
+		last_name: req.body.last_name,
 		password: req.body.password,
-		is_teacher: req.body.is_teacher
+		account_type: req.body.account_type,
+		address: req.body.address,
+		dob: req.body.dob,
+		profile_image: req.body.profile_image,
+		mobile_no: req.body.mobile_no,
+		parent_no: req.body.parent_no,
+		email: req.body.email
 	});
-	if (req.body.name == "" || req.body.password == "" || req.body.is_teacher == ""){
+
+
+	if (req.body.name == "" || req.body.password == "" || req.body.account_type == ""){
 		res.json({ success: false, message: 'Insufficient information was supplied.' });
 	}
 	else{
-	nick.save(function(err) {
+	newuser.save(function(err) {
 		if (err) throw err;
 
 
@@ -85,6 +95,7 @@ app.post('/sign_up', function(req, res) {
 	});
 }
 });
+
 
 
 apiRoutes.post('/authenticate', function(req, res) {
@@ -108,7 +119,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 				// if user is found and password is right
 				// create a token
 				var payload = {
-					admin: user.admin
+					admin: user.is_teacher
 				}
 				var token = jwt.sign(payload, app.get('superSecret'), {
 					expiresIn: 86400 // expires in 24 hours
@@ -116,7 +127,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 
 				res.json({
 					success: true,
-					message: 'Enjoy your token!',
+					message: 'Logged in Successfully!',
 					token: token
 				});
 			}
@@ -154,7 +165,7 @@ apiRoutes.use(function(req, res, next) {
 		// return an error
 		return res.status(403).send({
 			success: false,
-			message: 'No token provided.'
+			message: 'No token provided'
 		});
 
 	}
