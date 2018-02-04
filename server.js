@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 //Se nodemailer
-var transporter = nodemailer.createTransport({
+var transporter = nodemailer.createTransport("SMTP",{
   service: 'gmail',
   auth: {
     user: 'akshitv01@gmail.com',
@@ -116,7 +116,7 @@ app.post('/sign_up', function(req, res) {
   		from: 'akshitv01@gmail.com',
   		to: req.body.email,
   		subject: 'Successfully Registered! on SMS',
-  		text: 'hell'//'Hi! We are sharing your credentials via this mail. Username: ' + req.body.email + '  and Password: ' + text + ''
+  		text: 'Hi! We are sharing your credentials via this mail. Username: ' + req.body.email + '  and Password: ' + text + ''
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
