@@ -116,7 +116,7 @@ app.post('/sign_up', function(req, res) {
   		from: 'akshitv01@gmail.com',
   		to: req.body.email,
   		subject: 'Successfully Registered! on SMS',
-  		text: 'Hi! We are sharing your credentials via this mail. Username: ' + req.body.email + '  and Password: ' + text + ''
+  		text: 'hell'//'Hi! We are sharing your credentials via this mail. Username: ' + req.body.email + '  and Password: ' + text + ''
 		};
 
 		transporter.sendMail(mailOptions, function(error, info){
