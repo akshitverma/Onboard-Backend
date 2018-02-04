@@ -119,7 +119,8 @@ app.post('/sign_up', function(req, res) {
   		}
 		});
 		//
-}
+
+});
 }
 });
 
