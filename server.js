@@ -30,8 +30,8 @@ app.use(morgan('dev'));
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'sms_admin@fastmail.com',
-    pass: 'sms@123'
+    user: 'akshitv01@gmail.com',
+    pass: 'mathu1993gmail!!'
   }
 });
 
@@ -99,7 +99,7 @@ app.post('/sign_up', function(req, res) {
 	});
 
 
-	if (req.body.email == undefined || req.body.dob == "" || req.body.account_type == ""){
+	if (req.body.email == undefined || req.body.dob == "" || req.body.dob == undefined){
 		res.json({ success: false, message: 'Insufficient information was supplied.' });
 	}
 	else{
