@@ -80,6 +80,7 @@ app.post('/sign_up', function(req, res) {
 //password
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var uniqueId = req.body.first_name + req.body.dob
 
   for (var i = 0; i < 5; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -96,6 +97,7 @@ app.post('/sign_up', function(req, res) {
 		mobile_no: req.body.mobile_no,
 		parent_no: req.body.parent_no,
 		email: req.body.email
+    unique_id: uniqueId
 	});
 
 
@@ -170,6 +172,49 @@ apiRoutes.post('/authenticate', function(req, res) {
 
 	});
 });
+
+// API for Forgot Password
+apiRoutes.post('/forgot_password' function(req, res){
+  var uniqueId = req.body.unique_id;
+
+  User.findOne({
+		unique_id: uniqueId
+	}, function(err, user) {
+
+		if (err) throw err;
+  if (user){
+  var userEmail = user.email
+  var password = user.password
+  var mailOptions = {
+    from: 'akshitv01@gmail.com',
+    to: userEmail,
+    subject: 'Forgot Password! S-M-S',
+    text: 'Hi! We are sharing your credentials via this mail. Username: ' + userEmail + '  and Password: ' + password + ''
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+    }
+  });
+
+  res.json({
+    success: true,
+    message: 'Password has been sent to your registered email id.'
+  });
+}
+else{
+  res.json({
+    success: false,
+    message: 'This id is not registered with us.'
+  });
+}
+
+});
+});
+//
 
 // ---------------------------------------------------------
 // route middleware to authenticate and check token
