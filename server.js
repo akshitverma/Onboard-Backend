@@ -174,14 +174,15 @@ apiRoutes.post('/authenticate', function(req, res) {
 });
 
 // API for Forgot Password
-apiRoutes.post('/forgot_password' function(req, res){
+apiRoutes.post('/forgot_password', function(req, res){
   var uniqueId = req.body.unique_id;
 
   User.findOne({
 		unique_id: uniqueId
 	}, function(err, user) {
 
-		if (err) throw err;
+	if (err) throw err;
+
   if (user){
   var userEmail = user.email
   var password = user.password
