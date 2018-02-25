@@ -96,7 +96,7 @@ app.post('/sign_up', function(req, res) {
 		profile_image: req.body.profile_image,
 		mobile_no: req.body.mobile_no,
 		parent_no: req.body.parent_no,
-		email: req.body.email
+		email: req.body.email,
     unique_id: uniqueId
 	});
 
