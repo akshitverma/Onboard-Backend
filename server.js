@@ -135,7 +135,7 @@ app.post('/sign_up', function(req, res) {
   	                        if (error)
                             {
     	                         console.log(error);
-  	                        } 
+  	                        }
                             else
                             {
     	                         console.log('Email sent: ' + info.response);
@@ -152,7 +152,7 @@ app.post('/sign_up', function(req, res) {
 
 
 
-apiRoutes.post('/authenticate', function(req, res) {
+app.post('/authenticate', function(req, res) {
 
 	// find the user
 	User.findOne({
