@@ -6,6 +6,7 @@ module.exports = mongoose.model('User', new Schema({
 	first_name: String,
 	middle_name: String,
   last_name: String,
+	unique_id: String,
 	account_type: String,
 	address: String,
 	dob: String,
@@ -13,5 +14,5 @@ module.exports = mongoose.model('User', new Schema({
 	mobile_no: String,
 	parent_no: String,
 	email: String,
-	password: String 
+	password: String
 }));

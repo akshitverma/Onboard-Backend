@@ -105,29 +105,47 @@ app.post('/sign_up', function(req, res) {
 		res.json({ success: false, message: 'Insufficient information was supplied.' });
 	}
 	else{
-	newuser.save(function(err) {
-		if (err) throw err;
+
+    User.findOne({
+  		email: req.body.email
+  	}, function(err, user) {
+
+  		if (err) throw err;
+
+  		if (user) {
+  			res.json({ success: false, message: 'Email is already registered with us.' });
+  		} else if (!user) {
 
 
-		console.log('User saved successfully');
-		res.json({ success: true, message: 'Successfully Registered.'});
-		//
-		var mailOptions = {
-  		from: 'akshitv01@gmail.com',
-  		to: req.body.email,
-  		subject: 'Successfully Registered! on SMS',
-  		text: 'Hi! We are sharing your credentials via this mail. Username: ' + req.body.email + '  and Password: ' + text + ''
-		};
+	       newuser.save(function(err) {
+		         if (err) throw err;
 
-		transporter.sendMail(mailOptions, function(error, info){
-  	if (error) {
-    	console.log(error);
-  	} else {
-    	console.log('Email sent: ' + info.response);
-  		}
+
+		           console.log('User saved successfully');
+		             res.json({ success: true, message: 'Successfully Registered.'});
+		              //
+		                var mailOptions = {
+  		                  from: 'akshitv01@gmail.com',
+  		                  to: req.body.email,
+  		                  subject: 'Successfully Registered! on SMS',
+  		                  text: 'Hi! We are sharing your credentials via this mail. Username: ' + req.body.email + '  and Password: ' + text + ''
+		                   };
+
+		                     transporter.sendMail(mailOptions, function(error, info){
+  	                        if (error)
+                            {
+    	                         console.log(error);
+  	                        } 
+                            else
+                            {
+    	                         console.log('Email sent: ' + info.response);
+  		                      }
 		});
 		//
 
+
+});
+}
 });
 }
 });
