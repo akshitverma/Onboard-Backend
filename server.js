@@ -182,7 +182,8 @@ apiRoutes.post('/authenticate', function(req, res) {
 				res.json({
 					success: true,
 					message: 'Logged in Successfully!',
-					token: token
+					token: token,
+          data: user
 				});
 			}
 
