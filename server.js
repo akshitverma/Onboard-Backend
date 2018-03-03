@@ -162,7 +162,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 		if (err) throw err;
 
 		if (!user) {
-			res.json({ success: false, message: 'Authentication failed. User not found.' });
+			res.json({ success: false, message: 'Authentication failed. This user is not registered with us.' });
 		} else if (user) {
 
 			// check if password matches
@@ -179,11 +179,24 @@ apiRoutes.post('/authenticate', function(req, res) {
 					expiresIn: 86400 // expires in 24 hours
 				});
 
+        var userData = {
+          first_name: user.first_name,
+          middle_name: user.middle_name,
+          last_name: user.last_name,
+          address: user.address,
+          dob: user.dob,
+          account_type: user.account_type,
+          unique_id: user.unique_id,
+          email: user.email,
+          mobile_no: user.mobile_no,
+          parent_no: user.parent_no,
+          profile_image: user.profile_image
+        }
 				res.json({
 					success: true,
 					message: 'Logged in Successfully!',
 					token: token,
-          data: user
+          data: userData
 				});
 			}
 
