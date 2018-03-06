@@ -113,7 +113,7 @@ app.post('/sign_up', function(req, res) {
   		if (err) throw err;
 
   		if (user) {
-  			res.json({ success: false, message: 'Email is already registered with us.' });
+  			res.json({ data: null, status:400, success: false, message: 'Email is already registered with us.' });
   		} else if (!user) {
 
 
@@ -122,7 +122,7 @@ app.post('/sign_up', function(req, res) {
 
 
 		           console.log('User saved successfully');
-		             res.json({ success: true, message: 'Successfully Registered.'});
+		             res.json({ status: 200, data: null, success: true, message: 'Successfully Registered.'});
 		              //
 		                var mailOptions = {
   		                  from: 'akshitv01@gmail.com',
