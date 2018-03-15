@@ -86,17 +86,22 @@ app.post('/sign_up', function(req, res) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
 //
 	var newuser = new User({
-		first_name: req.body.first_name,
-		middle_name: req.body.middle_name,
-		last_name: req.body.last_name,
+		student_first_name: req.body.student_first_name,
+		student_middle_name: req.body.student_middle_name,
+		student_last_name: req.body.student_last_name,
 		password: text,
 		account_type: req.body.account_type,
-		address: req.body.address,
+		permanent_address: req.body.permanent_address,
+    temporary_address: req.body.temporary_address,
 		dob: req.body.dob,
 		profile_image: req.body.profile_image,
-		mobile_no: req.body.mobile_no,
-		parent_no: req.body.parent_no,
+		student_mobile_no: req.body.student_mobile_no,
+		parent_mobile_no: req.body.parent_mobile_no,
+    parent_first_name: req.body.parent_first_name,
+		parent_middle_name: req.body.parent_middle_name,
+		parent_last_name: req.body.parent_last_name,
 		email: req.body.email,
+    parent_email: req.body.parent_email,
     unique_id: uniqueId
 	});
 
