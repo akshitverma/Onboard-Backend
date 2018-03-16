@@ -21,7 +21,7 @@
             type: "GET",
             cache: false,
             success: function(result) {
-                console.log(result)
+               // console.log(result)
                 //document.getElementById("demo").innerHTML = result;
                 //console.log(JSON.stringify(result));
                 var jsonResult = result['data']
@@ -30,7 +30,7 @@
                 //console.log(data)
                 $('div').append("Your updated feed.");
                 $.each(jsonResult, function(i,row) {
-                    console.log(row)
+                   // console.log(row)
                     $('div').append("Blogs");
                     $('div').append("\n");
                     $('div').append(row.post_name);
