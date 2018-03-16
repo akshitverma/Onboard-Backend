@@ -6,11 +6,25 @@
         <script type="text/javascript">
         $(document).ready(function(){
             $(document).on('click','button', function(){
-                $.ajax({
-                  url: "http://onboard-api.herokuapp.com/users"
-                }).done(function(data) {
-                    $('div').append(data);
-                });
+                // $.ajax({
+                //   url: "http://onboard-api.herokuapp.com/users"
+                // }).done(function(data) {
+                //     $('div').append(data);
+                // });
+                $.ajax(
+        {
+            url: 'http://onboard-api.herokuapp.com/users',
+            async: true,
+            dataType: "json",
+            type: "GET",
+            success: function(result) {
+                $('div').append(data);
+            },
+            error: function(res, stat) {
+                alert(res.toString());
+                
+            }
+        });
             });
         });
         </script>
