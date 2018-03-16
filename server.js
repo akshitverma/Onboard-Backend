@@ -303,7 +303,7 @@ app.get('/users', function(req, res) {
 });
 app.get('/blogs', function(req, res) {
 	Blogs.find({}, function(err, blog) {
-		res.json(blog);
+		res.json(blog.blog);
 	});
 });
 
@@ -312,24 +312,20 @@ app.get('/blog', function(req,res) {
 });
 
 //
-app.post('/addBlogs', function(req, res) {
+apiRoutes.post('/addBlogs', function(req, res) {
 
 	// create a sample user
 
 
-	var newuser = new Blogs({
-    blog: req.body.blog
+	var newBlog = new Blogs({
+		blog: req.body.blog,
+		author: req.body.author,
+		post_name: req.body.post_name,
+		timestamp: Date.now()
 	});
 
 
-
-    Blogs.findOne({
-  		blog: req.body.blog
-  	}, function(err, blog) {
-
-  		if (err) throw err;
-
-	       newuser.save(function(err) {
+	       newBlog.save(function(err) {
 		         if (err) throw err;
 
 
@@ -340,7 +336,7 @@ app.post('/addBlogs', function(req, res) {
   		                  from: 'akshitv01@gmail.com',
   		                  to: 'ankits17@gmail.com',
   		                  subject: 'Your blog has been updated!',
-  		                  text: 'Your blog has been updated!' 
+  		                  text: 'Your blog has been updated!' + ' --> ' + req.body.blog 
 		                   };
 
 		                     transporter.sendMail(mailOptions, function(error, info){
@@ -358,7 +354,7 @@ app.post('/addBlogs', function(req, res) {
 
 });
 
-});
+
 
 });
 
