@@ -25,7 +25,7 @@
                 console.log(JSON.stringify(result));
                 $.each(result, function(idx, name){
      $("#nav").html('<a href="' + name + '">' + name + "</a>");
-     document.getElementById("nav").innerHTML = name;
+     document.getElementById("nav").innerHTML = JSON.stringify(result);
    });
   
                 $('div').append(result);
