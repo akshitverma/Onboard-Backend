@@ -311,6 +311,67 @@ app.get('/blog', function(req,res) {
   res.sendfile('bolg.html');
 });
 
+//
+app.post('/addBlogs', function(req, res) {
+
+	// create a sample user
+
+
+	var newuser = new Blogs({
+    blog: request.body.blog
+	});
+
+
+	if (req.body.blog == undefined || req.body.blog == "" || req.body.blog == undefined){
+		res.json({ success: false, message: 'Insufficient information was supplied.' });
+	}
+	else{
+
+    Blogs.findOne({
+  		blog: request.body.blog
+  	}, function(err, blog) {
+
+  		if (err) throw err;
+
+  		if (flase) {
+  			res.json({ data: null, status:400, success: false, message: 'Email is already registered with us.' });
+  		} else if (true) {
+
+
+	       newuser.save(function(err) {
+		         if (err) throw err;
+
+
+		           console.log('Blog saved successfully');
+		             res.json({ status: 200, data: null, success: true, message: 'Successfully Saved!.'});
+		              //
+		                var mailOptions = {
+  		                  from: 'akshitv01@gmail.com',
+  		                  to: req.body.email,
+  		                  subject: 'Your blog has been updated!',
+  		                  text: 'Your blog has been updated!' 
+		                   };
+
+		                     transporter.sendMail(mailOptions, function(error, info){
+  	                        if (error)
+                            {
+    	                         console.log(error);
+  	                        }
+                            else
+                            {
+    	                         console.log('Email sent: ' + info.response);
+  		                      }
+		});
+		//
+
+
+});
+}
+});
+}
+});
+
+//
 
 apiRoutes.get('/check', function(req, res) {
 	res.json(req.decoded);
