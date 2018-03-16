@@ -21,6 +21,9 @@
             cache: false,
             success: function(result) {
                 document.getElementById("demo").innerHTML = result;
+                $.each(result.name, function(idx, name){
+     $("#nav").html('<a href="' + name + '">' + name + "</a>");
+   });
   
                 $('div').append(result);
             },
