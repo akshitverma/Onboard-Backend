@@ -24,10 +24,13 @@
                 //document.getElementById("demo").innerHTML = result;
                 //console.log(JSON.stringify(result));
                 var jsonResult = result
-                $.each(jsonResult, function(idx, blog){
-                document.getElementById("nav").innerHTML = "Blogs";
-                $('div').append(blog.blog)
-        });
+                $.each(jsonResult, function() {
+                    $.each(this, function(k, v) {
+                     /// do stuff
+                     $('div').append(k);
+                     $('div').append(v);
+                    });
+                });
   
         },
             error: function(res, stat) {
