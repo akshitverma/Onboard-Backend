@@ -25,14 +25,14 @@
                 //document.getElementById("demo").innerHTML = result;
                 //console.log(JSON.stringify(result));
                 var jsonResult = result['data']
-                var json_obj = $.parseJSON(result);
+                
                 var data = json_obj[0].data
                 console.log(data)
                 $.each(jsonResult, function(row) {
                     console.log(row)
                     $('div').append(jsonResult[row]);
                 });
-                for (var i in data) {
+                for (var i in jsonResult) {
                     $('div').append(i.blog);
                 }
   
