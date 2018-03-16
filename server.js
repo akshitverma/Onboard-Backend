@@ -303,7 +303,7 @@ app.get('/users', function(req, res) {
 });
 app.get('/blogs', function(req, res) {
 	Blogs.find({}, function(err, blog) {
-		res.json(blog.blog);
+		res.json(blog);
 	});
 });
 
