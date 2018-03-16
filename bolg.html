@@ -23,10 +23,10 @@
             success: function(result) {
                 //document.getElementById("demo").innerHTML = result;
                 //console.log(JSON.stringify(result));
-                var jsonResult = JSON.parse(result);
+                var jsonResult = result
                 $.each(jsonResult, function(idx, blog){
                 document.getElementById("nav").innerHTML = "Blogs";
-                $('div').append(blog.data)
+                $('div').append(blog.blog)
         });
   
         },
