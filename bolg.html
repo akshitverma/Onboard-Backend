@@ -24,6 +24,7 @@
                 document.getElementById("demo").innerHTML = result;
                 $.each(result.name, function(idx, name){
      $("#nav").html('<a href="' + name + '">' + name + "</a>");
+     document.getElementById("nav").innerHTML = name;
    });
   
                 $('div').append(result);
