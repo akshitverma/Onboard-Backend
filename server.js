@@ -312,7 +312,7 @@ app.get('/blog', function(req,res) {
 });
 
 //
-apiRoutes.post('/addBlogs', function(req, res) {
+app.post('/addBlogs', function(req, res) {
 
 	// create a sample user
 
