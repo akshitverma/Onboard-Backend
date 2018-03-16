@@ -27,7 +27,7 @@
                 var jsonResult = result['data']
                 console.log(jsonResult)
                 $.each(jsonResult, function(row) {
-                    $('div').append(row.blog);
+                    $('div').append(row['blog']);
                 });
   
         },
