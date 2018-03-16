@@ -318,7 +318,7 @@ app.post('/addBlogs', function(req, res) {
 
 
 	var newuser = new Blogs({
-    blog: request.body.blog
+    blog: req.body.blog
 	});
 
 
