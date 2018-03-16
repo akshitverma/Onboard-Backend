@@ -303,7 +303,13 @@ app.get('/users', function(req, res) {
 });
 app.get('/blogs', function(req, res) {
 	Blogs.find({}, function(err, blog) {
-		res.json(blog);
+		var newBlog = new Blogs({
+			blog: blog.blog,
+			author: blog.author,
+			post_name: blog.post_name,
+			timestamp: blog.timestamp
+		});
+		res.json({ status: 200, data: newBlog, success: true, message: 'Your updated feed.'});
 	});
 });
 
@@ -316,13 +322,14 @@ app.post('/addBlogs', function(req, res) {
 
 	// create a sample user
 
-
+  var datetime = new Date();
 	var newBlog = new Blogs({
 		blog: req.body.blog,
 		author: req.body.author,
 		post_name: req.body.post_name,
-		timestamp: Date.now()
+		timestamp: datetime
 	});
+
 
 
 	       newBlog.save(function(err) {
