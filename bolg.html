@@ -8,8 +8,8 @@
             $(document).on('click','button', function(){
                 $.ajax({
                   url: "http://onboard-api.herokuapp.com/users"
-                }).done(function() {
-                    $('div').append("POPULATED BLOGS FOR DB");
+                }).done(function(data) {
+                    $('div').append(data);
                 });
             });
         });
