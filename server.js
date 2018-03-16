@@ -303,12 +303,12 @@ app.get('/users', function(req, res) {
 });
 app.get('/blogs', function(req, res) {
 	Blogs.find({}, function(err, blog) {
-		var newBlog = new Blogs({
+		var newBlog = {
 			blog: blog.blog,
 			author: blog.author,
 			post_name: blog.post_name,
 			timestamp: blog.timestamp
-		});
+		}
 		res.json({ status: 200, data: newBlog, success: true, message: 'Your updated feed.'});
 	});
 });
