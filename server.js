@@ -302,6 +302,11 @@ app.get('/users', function(req, res) {
 	});
 });
 
+app.get('/blog', function(req,res) {
+  res.sendfile('blog.html');
+});
+
+
 apiRoutes.get('/check', function(req, res) {
 	res.json(req.decoded);
 });
