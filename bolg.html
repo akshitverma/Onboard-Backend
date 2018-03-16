@@ -1,6 +1,7 @@
 <html>
     <body>
         <button >Load from server</button>
+        <div id="demo"></div>
         <div></div>
         <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script type="text/javascript">
@@ -19,6 +20,8 @@
             type: "GET",
             cache: false,
             success: function(result) {
+                document.getElementById("demo").innerHTML = result;
+  
                 $('div').append(result);
             },
             error: function(res, stat) {
