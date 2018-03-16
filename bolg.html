@@ -24,20 +24,10 @@
                 console.log(result)
                 //document.getElementById("demo").innerHTML = result;
                 //console.log(JSON.stringify(result));
-                var jsonResult = result
-                var jj = JSON.parse(result)
-                console.log(jj)
-                console.log(jj.data)
-
-                $.each(jsonResult, function() {
-                    $.each(this, function(k, v) {
-                     /// do stuff
-                     console.log(v)
-                     console.log(k)
-
-                     $('div').append(k);
-                     $('div').append(v);
-                    });
+                var jsonResult = result['data']
+            
+                $.each(jsonResult, function(row) {
+                    $('div').append(row.blog);
                 });
   
         },
