@@ -22,13 +22,12 @@
             cache: false,
             success: function(result) {
                 //document.getElementById("demo").innerHTML = result;
-                console.log(JSON.stringify(result));
+                //console.log(JSON.stringify(result));
                 $.each(result, function(idx, name){
-     $("#nav").html('<a href="' + name + '">' + name + "</a>");
-     document.getElementById("nav").innerHTML = JSON.stringify(result);
+     document.getElementById("nav").innerHTML = JSON.stringify(name.blog);
    });
   
-                $('div').append(result);
+                //$('div').append(result);
             },
             error: function(res, stat) {
                 alert(res.toString());
