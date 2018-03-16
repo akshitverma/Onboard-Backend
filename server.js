@@ -303,7 +303,7 @@ app.get('/users', function(req, res) {
 });
 
 app.get('/blog', function(req,res) {
-  res.sendfile('blog.html');
+  res.sendfile('bolg.html');
 });
 
 
