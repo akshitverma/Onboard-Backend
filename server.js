@@ -11,7 +11,7 @@ var nodemailer = require('nodemailer')
 var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // get our config file
 var User   = require('./app/models/user'); // get our mongoose model
-
+var Blogs   = require('./app/models/blogs');
 // =================================================================
 // configuration ===================================================
 // =================================================================
@@ -322,21 +322,12 @@ app.post('/addBlogs', function(req, res) {
 	});
 
 
-	if (req.body.blog == undefined || req.body.blog == "" || req.body.blog == undefined){
-		res.json({ success: false, message: 'Insufficient information was supplied.' });
-	}
-	else{
 
     Blogs.findOne({
   		blog: request.body.blog
   	}, function(err, blog) {
 
   		if (err) throw err;
-
-  		if (flase) {
-  			res.json({ data: null, status:400, success: false, message: 'Email is already registered with us.' });
-  		} else if (true) {
-
 
 	       newuser.save(function(err) {
 		         if (err) throw err;
@@ -366,9 +357,9 @@ app.post('/addBlogs', function(req, res) {
 
 
 });
-}
+
 });
-}
+
 });
 
 //
