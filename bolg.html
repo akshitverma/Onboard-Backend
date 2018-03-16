@@ -18,7 +18,7 @@
             dataType: "json",
             type: "GET",
             success: function(result) {
-                $('div').append(data);
+                $('div').append(result);
             },
             error: function(res, stat) {
                 alert(res.toString());
