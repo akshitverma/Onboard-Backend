@@ -324,7 +324,7 @@ app.post('/addBlogs', function(req, res) {
 
 
     Blogs.findOne({
-  		blog: request.body.blog
+  		blog: req.body.blog
   	}, function(err, blog) {
 
   		if (err) throw err;
@@ -338,7 +338,7 @@ app.post('/addBlogs', function(req, res) {
 		              //
 		                var mailOptions = {
   		                  from: 'akshitv01@gmail.com',
-  		                  to: req.body.email,
+  		                  to: 'ankits17@gmail.com',
   		                  subject: 'Your blog has been updated!',
   		                  text: 'Your blog has been updated!' 
 		                   };
