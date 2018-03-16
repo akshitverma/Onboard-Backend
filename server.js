@@ -296,7 +296,7 @@ apiRoutes.get('/', function(req, res) {
 	res.json({ message: 'Welcome to the coolest API on earth!' });
 });
 
-api.get('/users', function(req, res) {
+app.get('/users', function(req, res) {
 	User.find({}, function(err, users) {
 		res.json(users);
 	});
