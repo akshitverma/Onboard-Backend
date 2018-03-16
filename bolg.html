@@ -28,14 +28,19 @@
                 
                // var data = json_obj[0].data
                 //console.log(data)
-                $('HI').append("Your updated feed.");
+                $('div').append("Your updated feed.");
                 $.each(jsonResult, function(i,row) {
                     console.log(row)
-                    $('HI').append("Blogs");
-                    $('H1').append(row.post_name);
-                    $('H2').append(row.author);
+                    $('div').append("Blogs");
+                    $('div').append("\n");
+                    $('div').append(row.post_name);
+                    $('div').append("\n");
+                    $('div').append(row.author);
+                    $('div').append("\n");
                     $('div').append(row.blog);
-                    $('h3').append(row.timestamp);
+                    $('div').append("\n");
+                    $('div').append(row.timestamp);
+                    $('div').append("\n");
                 });
                
   
