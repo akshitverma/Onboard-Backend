@@ -301,6 +301,11 @@ app.get('/users', function(req, res) {
 		res.json(users);
 	});
 });
+app.get('/blogs', function(req, res) {
+	Blogs.find({}, function(err, blog) {
+		res.json(blog);
+	});
+});
 
 app.get('/blog', function(req,res) {
   res.sendfile('bolg.html');
