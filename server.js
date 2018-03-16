@@ -309,7 +309,7 @@ app.get('/blogs', function(req, res) {
 			post_name: blog.post_name,
 			timestamp: blog.timestamp
 		}
-		res.json({ status: 200, data: newBlog, success: true, message: 'Your updated feed.'});
+		res.json({ status: 200, data: blog, success: true, message: 'Your updated feed.'});
 	});
 });
 
