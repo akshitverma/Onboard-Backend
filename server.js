@@ -183,7 +183,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 				var token = jwt.sign(payload, app.get('superSecret'), {
 					expiresIn: 86400 // expires in 24 hours
 				});
-
+				var newToken = token
         var userData = {
           first_name: user.first_name,
           middle_name: user.middle_name,
@@ -196,7 +196,7 @@ apiRoutes.post('/authenticate', function(req, res) {
           mobile_no: user.mobile_no,
           parent_no: user.parent_no,
 					profile_image: user.profile_image,
-					token: token
+					token: newToken
 				}
 				var userDataToSave = new User({
           first_name: user.first_name,
@@ -210,8 +210,9 @@ apiRoutes.post('/authenticate', function(req, res) {
           mobile_no: user.mobile_no,
           parent_no: user.parent_no,
 					profile_image: user.profile_image,
-					token: token
+					token: newToken
 				});
+				console.log(">>>>>",newToken)
 				var newTokenToSave = new User({ token: token });
 				User.findOneAndUpdate({email:user.email}, userDataToSave, function (err, user) {
 				//	res.send(user);
