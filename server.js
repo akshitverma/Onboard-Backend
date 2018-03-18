@@ -198,8 +198,22 @@ apiRoutes.post('/authenticate', function(req, res) {
 					profile_image: user.profile_image,
 					toekn: token
 				}
+				var userDataToSave = new User({
+          first_name: user.first_name,
+          middle_name: user.middle_name,
+          last_name: user.last_name,
+          address: user.address,
+          dob: user.dob,
+          account_type: user.account_type,
+          unique_id: user.unique_id,
+          email: user.email,
+          mobile_no: user.mobile_no,
+          parent_no: user.parent_no,
+					profile_image: user.profile_image,
+					toekn: token
+				});
 				var newTokenToSave = new User({ token: token });
-				User.findOneAndUpdate({unique_id:user.unique_id}, userData, function (err, user) {
+				User.findOneAndUpdate({unique_id:user.unique_id}, userDataToSave, function (err, user) {
 				//	res.send(user);
 				});
 
@@ -215,6 +229,48 @@ apiRoutes.post('/authenticate', function(req, res) {
 
 	});
 });
+
+
+
+//API for Login via Access Token
+apiRoutes.post('/loginViaToken', function(req, res) {
+
+	// find the user
+	User.findOne({
+		token: req.body.token
+	}, function(err, user) {
+
+		if (err) throw err;
+
+		if (!user) {
+			res.json({ success: false, message: 'Session Expired. Please login again.' });
+		} else if (user) {
+			var userData = {
+				first_name: user.first_name,
+				middle_name: user.middle_name,
+				last_name: user.last_name,
+				address: user.address,
+				dob: user.dob,
+				account_type: user.account_type,
+				unique_id: user.unique_id,
+				email: user.email,
+				mobile_no: user.mobile_no,
+				parent_no: user.parent_no,
+				profile_image: user.profile_image,
+				toekn: user.token
+			}
+
+			res.json({
+				success: true,
+				message: 'Logged in Successfully!',
+				token: user.token,
+				data: userData
+			});
+
+		}
+	});
+});
+//
 
 // API for Forgot Password
 apiRoutes.post('/forgot_password', function(req, res){
