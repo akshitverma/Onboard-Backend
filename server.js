@@ -196,7 +196,7 @@ apiRoutes.post('/authenticate', function(req, res) {
           mobile_no: user.mobile_no,
           parent_no: user.parent_no,
 					profile_image: user.profile_image,
-					toekn: token
+					token: token
 				}
 				var userDataToSave = new User({
           first_name: user.first_name,
@@ -210,7 +210,7 @@ apiRoutes.post('/authenticate', function(req, res) {
           mobile_no: user.mobile_no,
           parent_no: user.parent_no,
 					profile_image: user.profile_image,
-					toekn: token
+					token: token
 				});
 				var newTokenToSave = new User({ token: token });
 				User.findOneAndUpdate({email:user.email}, userDataToSave, function (err, user) {
@@ -257,7 +257,7 @@ apiRoutes.post('/loginViaToken', function(req, res) {
 				mobile_no: user.mobile_no,
 				parent_no: user.parent_no,
 				profile_image: user.profile_image,
-				toekn: user.token
+				token: user.token
 			}
 
 			res.json({
