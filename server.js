@@ -213,6 +213,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 					token: newToken
 				});
 				console.log(">>>>>",newToken)
+				console.log(">>>>>======",userDataToSave)
 				var newTokenToSave = new User({ token: token });
 				User.findOneAndUpdate({email:user.email}, userDataToSave, function (err, user) {
 				//	res.send(user);
