@@ -217,6 +217,10 @@ apiRoutes.post('/authenticate', function(req, res) {
 				var newTokenToSave = new User({ token: token });
 				User.findOneAndUpdate({email:user.email}, userDataToSave, function (err, user) {
 				//	res.send(user);
+				user.items.push(newTokenToSave);
+				user.save(function(err, doc){
+				console.log('Token has been stored!');
+				});
 				console.log("*****",userDataToSave)
 				});
 
