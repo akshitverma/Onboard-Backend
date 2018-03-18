@@ -210,7 +210,7 @@ apiRoutes.post('/authenticate', function(req, res) {
           mobile_no: user.mobile_no,
           parent_no: user.parent_no,
 					profile_image: user.profile_image,
-					token: newToken
+					token: "jhgfjgjj"
 				});
 				console.log(">>>>>",newToken)
 				console.log(">>>>>======",userDataToSave)
