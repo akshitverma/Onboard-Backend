@@ -195,8 +195,14 @@ apiRoutes.post('/authenticate', function(req, res) {
           email: user.email,
           mobile_no: user.mobile_no,
           parent_no: user.parent_no,
-          profile_image: user.profile_image
-        }
+					profile_image: user.profile_image,
+					toekn: token
+				}
+				var newTokenToSave = new User({ token: token });
+				User.findOneAndUpdate({unique_id:user.unique_id}, userData, function (err, user) {
+				//	res.send(user);
+				});
+
 				res.json({
 					success: true,
 					message: 'Logged in Successfully!',
