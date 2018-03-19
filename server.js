@@ -103,7 +103,8 @@ app.post('/sign_up', function(req, res) {
 		parent_last_name: req.body.parent_last_name,
 		email: req.body.email,
     parent_email: req.body.parent_email,
-    unique_id: uniqueId
+	unique_id: uniqueId,
+	token: "null"
 	});
 
 
@@ -185,32 +186,44 @@ apiRoutes.post('/authenticate', function(req, res) {
 					expiresIn: 86400 // expires in 24 hours
 				});
 				var newToken = token
-        var userData = {
-          first_name: user.first_name,
-          middle_name: user.middle_name,
-          last_name: user.last_name,
-          address: user.address,
-          dob: user.dob,
-          account_type: user.account_type,
-          unique_id: user.unique_id,
-          email: user.email,
-          mobile_no: user.mobile_no,
-          parent_no: user.parent_no,
-					profile_image: user.profile_image,
-					token: newToken
-				}
+		var userData = 
+		{
+			student_first_name: user.student_first_name,
+			student_middle_name: user.student_middle_name,
+			student_last_name: user.student_last_name,
+			
+			account_type: user.account_type,
+			permanent_address: user.permanent_address,
+			temporary_address: user.temporary_address,
+			dob: user.dob,
+			profile_image: user.profile_image,
+			student_mobile_no: user.student_mobile_no,
+			parent_mobile_no: user.parent_mobile_no,
+			parent_first_name: user.parent_first_name,
+			parent_middle_name: user.parent_middle_name,
+			parent_last_name: user.parent_last_name,
+			email: user.email,
+			parent_email: user.parent_email,
+			unique_id: user.unique_id
+		}
 				var userDataToSave = new User({
-         			 first_name: user.first_name,
-         			 middle_name: user.middle_name,
-         			 last_name: user.last_name,
-          			address: user.address,
-          			dob: user.dob,
-          			account_type: user.account_type,
-          			unique_id: user.unique_id,
-         			 email: user.email,
-         			 mobile_no: user.mobile_no,
-          			parent_no: user.parent_no,
+					student_first_name: user.student_first_name,
+					student_middle_name: user.student_middle_name,
+					student_last_name: user.student_last_name,
+					
+					account_type: user.account_type,
+					permanent_address: user.permanent_address,
+					temporary_address: user.temporary_address,
+					dob: user.dob,
 					profile_image: user.profile_image,
+					student_mobile_no: user.student_mobile_no,
+					parent_mobile_no: user.parent_mobile_no,
+					parent_first_name: user.parent_first_name,
+					parent_middle_name: user.parent_middle_name,
+					parent_last_name: user.parent_last_name,
+					email: user.email,
+					parent_email: user.parent_email,
+					unique_id: user.unique_id,
 					token: newToken
 				});
 				console.log(">>>>>",newToken)
