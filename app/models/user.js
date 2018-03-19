@@ -19,5 +19,6 @@ module.exports = mongoose.model('User', new Schema({
 	parent_mobile_no: String,
 	email: String,
 	parent_email: String,
-	password: String
+	password: String,
+	token: String
 }));
