@@ -89,15 +89,15 @@
             <div class="post-preview" ng-repeat="feed in blogData">
               <a href="post.html">
                 <h3 class="post-title">
-                        title
+                        {{feed.post_name}}
                 </h3>
                 <h4 class="post-subtitle">
                   {{feed.blog}}
                 </h4>
               </a>
               <p class="post-meta">Posted by
-                <a href="#">esw</a>
-                on xyz</p>
+                <a href="#">{{feed.author}}</a>
+                on {{feed.timestamp}}</p>
             <hr>
                 
             </div>
