@@ -82,35 +82,45 @@
    </head>
    
    <body>
-      <h2>AngularJS Sample Application</h2>
       
-      <div ng-app = "mainApp" ng-controller = "studentController">
-         Enter first name: <input type = "text" ng-model = "student.firstName"><br><br>
-         Enter last name: <input type = "text" ng-model = "student.lastName"><br>
-         <br>
-         
-         You are entering: {{student.fullName()}}
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-preview" ng-repeat="feed in blogData">
+              <a href="post.html">
+                <h3 class="post-title">
+                        title
+                </h3>
+                <h4 class="post-subtitle">
+                  {{feed.blog}}
+                </h4>
+              </a>
+              <p class="post-meta">Posted by
+                <a href="#">esw</a>
+                on xyz</p>
+            <hr>
+                
+            </div>
+            
+            <!-- Pager -->
+            <div class="clearfix">
+              <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+            </div>
+          </div>
+        </div>
       </div>
       
       <script>
          var mainApp = angular.module("mainApp", []);
          
          mainApp.controller('studentController', function($scope, $http) {
-            $scope.student = {
-               firstName: "Mahesh",
-               lastName: "Parashar",
-               
-               fullName: function() {
-                  var studentObject;
-                  studentObject = $scope.student;
-                  return studentObject.firstName + " " + studentObject.lastName;
-               }
-            };
+          
             $http({
   method: 'GET',
   url: 'http://onboard-api.herokuapp.com/blogs'
 }).then(function successCallback(response) {
     console.log(response)
+    $cope.blogData=response.data.data;
     // this callback will be called asynchronously
     // when the response is available
   }, function errorCallback(response) {
