@@ -120,7 +120,7 @@
   url: 'http://onboard-api.herokuapp.com/blogs'
 }).then(function successCallback(response) {
     console.log(response)
-    $cope.blogData=response.data.data;
+    $scope.blogData=response.data.data;
     // this callback will be called asynchronously
     // when the response is available
   }, function errorCallback(response) {
