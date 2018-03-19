@@ -12,6 +12,7 @@ var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // get our config file
 var User   = require('./app/models/user'); // get our mongoose model
 var Blogs   = require('./app/models/blogs');
+var Loggedin = require('./app/models/loggedin');
 // =================================================================
 // configuration ===================================================
 // =================================================================
@@ -210,7 +211,7 @@ apiRoutes.post('/authenticate', function(req, res) {
           mobile_no: user.mobile_no,
           parent_no: user.parent_no,
 					profile_image: "abcd",
-					token1: "jhgfjgjj"
+					token: "jhgfjgjj"
 				});
 				console.log(">>>>>",newToken)
 				console.log(">>>>>======",userDataToSave)
