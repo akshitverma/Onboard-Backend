@@ -200,18 +200,18 @@ apiRoutes.post('/authenticate', function(req, res) {
 					token: newToken
 				}
 				var userDataToSave = new User({
-          first_name: user.first_name,
-          middle_name: user.middle_name,
-          last_name: user.last_name,
-          address: user.address,
-          dob: user.dob,
-          account_type: user.account_type,
-          unique_id: user.unique_id,
-          email: user.email,
-          mobile_no: user.mobile_no,
-          parent_no: user.parent_no,
-					profile_image: "abcd",
-					token: "jhgfjgjj"
+         			 first_name: user.first_name,
+         			 middle_name: user.middle_name,
+         			 last_name: user.last_name,
+          			address: user.address,
+          			dob: user.dob,
+          			account_type: user.account_type,
+          			unique_id: user.unique_id,
+         			 email: user.email,
+         			 mobile_no: user.mobile_no,
+          			parent_no: user.parent_no,
+					profile_image: user.profile_image,
+					token: newToken
 				});
 				console.log(">>>>>",newToken)
 				console.log(">>>>>======",userDataToSave)
