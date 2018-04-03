@@ -13,6 +13,7 @@ var config = require('./config'); // get our config file
 var User   = require('./app/models/user'); // get our mongoose model
 var Blogs   = require('./app/models/blogs');
 var Loggedin = require('./app/models/loggedin');
+var AcademicDetails = require('./app/models/AcademicDetails');
 // =================================================================
 // configuration ===================================================
 // =================================================================
@@ -86,6 +87,13 @@ app.post('/sign_up', function(req, res) {
   for (var i = 0; i < 5; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
 //
+    var queryObj = req.body.academic_details
+	var obj = JSON.parse( queryObj );
+
+	var academicDetails = new AcademicDetails({
+		college_name: obj.college_name,
+		course_name: obj.course_name
+	});
 	var newuser = new User({
 		student_first_name: req.body.student_first_name,
 		student_middle_name: req.body.student_middle_name,
@@ -105,11 +113,12 @@ app.post('/sign_up', function(req, res) {
    		parent_email: req.body.parent_email,
 		unique_id: uniqueId,
 		token: "null",
-		academic_details: req.body.academic_details
+		academic_details: academicDetails
 
 	});
 
 	console.log("----->" + newuser)
+	console.log(req.body.academic_details)
 
 	if (req.body.email == undefined || req.body.dob == "" || req.body.dob == undefined){
 		res.json({ success: false, message: 'Insufficient information was supplied.' });
@@ -194,7 +203,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 			student_first_name: user.student_first_name,
 			student_middle_name: user.student_middle_name,
 			student_last_name: user.student_last_name,
-			
+			academic_details: user.academic_details,
 			account_type: user.account_type,
 			permanent_address: user.permanent_address,
 			temporary_address: user.temporary_address,
@@ -213,7 +222,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 					student_first_name: user.student_first_name,
 					student_middle_name: user.student_middle_name,
 					student_last_name: user.student_last_name,
-					
+					academic_details: user.academic_details,
 					account_type: user.account_type,
 					permanent_address: user.permanent_address,
 					temporary_address: user.temporary_address,
