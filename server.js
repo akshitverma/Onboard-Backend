@@ -93,18 +93,20 @@ app.post('/sign_up', function(req, res) {
 		password: text,
 		account_type: req.body.account_type,
 		permanent_address: req.body.permanent_address,
-    temporary_address: req.body.temporary_address,
+        temporary_address: req.body.temporary_address,
 		dob: req.body.dob,
 		profile_image: req.body.profile_image,
 		student_mobile_no: req.body.student_mobile_no,
 		parent_mobile_no: req.body.parent_mobile_no,
-    parent_first_name: req.body.parent_first_name,
+        parent_first_name: req.body.parent_first_name,
 		parent_middle_name: req.body.parent_middle_name,
 		parent_last_name: req.body.parent_last_name,
 		email: req.body.email,
-    parent_email: req.body.parent_email,
-	unique_id: uniqueId,
-	token: "null"
+   		parent_email: req.body.parent_email,
+		unique_id: uniqueId,
+		token: "null",
+		academic_details: req.body.academic_details
+
 	});
 
 
@@ -293,6 +295,12 @@ apiRoutes.post('/loginViaToken', function(req, res) {
 apiRoutes.post('/forgot_password', function(req, res){
   var uniqueId = req.body.unique_id;
 
+  var forgotToken = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 10; i++)
+	forgotToken += possible.charAt(Math.floor(Math.random() * possible.length));
+	
   User.findOne({
 		unique_id: uniqueId
 	}, function(err, user) {
