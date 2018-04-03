@@ -109,6 +109,7 @@ app.post('/sign_up', function(req, res) {
 
 	});
 
+	console.log("----->" + newuser)
 
 	if (req.body.email == undefined || req.body.dob == "" || req.body.dob == undefined){
 		res.json({ success: false, message: 'Insufficient information was supplied.' });
