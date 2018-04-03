@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var AcademicDetails = require('/AcademicDetails');
+var AcademicDetails = require('AcademicDetails');
 // set up a mongoose model
 module.exports = mongoose.model('User', new Schema({
 	student_first_name: String,
